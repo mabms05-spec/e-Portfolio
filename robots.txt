@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mabms05-spec.github.io/e-Portfolio/sitemap.xml
