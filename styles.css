@@ -17,69 +17,73 @@
     --header-height: 70px;
 }
 
-/* --- DARK MODE OVERRIDES (prefers-color-scheme: dark) --- */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-primary: #EDF2F7;      /* Clean Off-white for dark headers */
-        --color-accent-blue: #A0AEC0;  /* Cool grey slate */
-        --color-accent-teal: #4FD1C5;  /* High-contrast Teal accent */
-        --color-bg-white: #1A202C;     /* Deep charcoal background */
-        --color-bg-light: #2D3748;     /* Medium slate card background */
-        --color-text-dark: #F7FAFC;    /* Crisp light text */
-        --color-text-muted: #CBD5E0;   /* Muted gray text with WCAG contrast on dark background */
-        --color-border: #4A5568;       /* Dark slate borders */
-    }
-    
-    header {
-        background-color: rgba(26, 32, 44, 0.9) !important;
-    }
-    
-    header.scrolled {
-        background-color: rgba(26, 32, 44, 0.96) !important;
-    }
+/* --- DARK MODE OVERRIDES (Manual Toggle - .dark-theme) --- */
+:root.dark-theme {
+    --color-primary: #EDF2F7;      /* Clean Off-white for dark headers */
+    --color-accent-blue: #A0AEC0;  /* Cool grey slate */
+    --color-accent-teal: #4FD1C5;  /* High-contrast Teal accent */
+    --color-bg-white: #1A202C;     /* Deep charcoal background */
+    --color-bg-light: #2D3748;     /* Medium slate card background */
+    --color-text-dark: #F7FAFC;    /* Crisp light text */
+    --color-text-muted: #CBD5E0;   /* Muted gray text with WCAG contrast on dark background */
+    --color-border: #4A5568;       /* Dark slate borders */
+}
 
-    .highlight-card, .academic-card, .timeline-content, .skills-category, .contact-form-container {
-        background-color: var(--color-bg-light);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
-    }
+:root.dark-theme header {
+    background-color: rgba(26, 32, 44, 0.9) !important;
+}
 
-    .module-tag {
-        background-color: #1A202C !important;
-        border-color: #4A5568 !important;
-        color: #A0AEC0 !important;
-    }
+:root.dark-theme header.scrolled {
+    background-color: rgba(26, 32, 44, 0.96) !important;
+}
 
-    .module-tag:hover {
-        background-color: #2D3748 !important;
-        border-color: var(--color-accent-teal) !important;
-        color: var(--color-accent-teal) !important;
-    }
+:root.dark-theme .highlight-card, 
+:root.dark-theme .academic-card, 
+:root.dark-theme .timeline-content, 
+:root.dark-theme .skills-category, 
+:root.dark-theme .contact-form-container {
+    background-color: var(--color-bg-light);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
+}
 
-    .project-meta span {
-        background-color: #1A202C !important;
-        border-color: #4A5568 !important;
-    }
+:root.dark-theme .module-tag {
+    background-color: #1A202C !important;
+    border-color: #4A5568 !important;
+    color: #A0AEC0 !important;
+}
 
-    .project-caption {
-        background-color: #2D3748 !important;
-        border-top-color: #4A5568 !important;
-    }
+:root.dark-theme .module-tag:hover {
+    background-color: #2D3748 !important;
+    border-color: var(--color-accent-teal) !important;
+    color: var(--color-accent-teal) !important;
+}
 
-    .form-group input, .form-group textarea {
-        background-color: #1A202C !important;
-        color: var(--color-text-dark) !important;
-        border-color: #4A5568 !important;
-    }
+:root.dark-theme .project-meta span {
+    background-color: #1A202C !important;
+    border-color: #4A5568 !important;
+}
 
-    .form-group input:focus, .form-group textarea:focus {
-        background-color: var(--color-bg-light) !important;
-        border-color: var(--color-accent-teal) !important;
-    }
+:root.dark-theme .project-caption {
+    background-color: #2D3748 !important;
+    border-top-color: #4A5568 !important;
+}
 
-    .whatsapp-tooltip {
-        background-color: #2D3748 !important;
-        border: 1px solid #4A5568;
-    }
+:root.dark-theme .form-group input, 
+:root.dark-theme .form-group textarea {
+    background-color: #1A202C !important;
+    color: var(--color-text-dark) !important;
+    border-color: #4A5568 !important;
+}
+
+:root.dark-theme .form-group input:focus, 
+:root.dark-theme .form-group textarea:focus {
+    background-color: var(--color-bg-light) !important;
+    border-color: var(--color-accent-teal) !important;
+}
+
+:root.dark-theme .whatsapp-tooltip {
+    background-color: #2D3748 !important;
+    border: 1px solid #4A5568;
 }
 
 /* --- BASE STYLES --- */
@@ -1227,4 +1231,51 @@ footer {
     .timeline-date {
         margin-top: 4px;
     }
+}
+
+/* --- THEME TOGGLE BUTTON STYLING --- */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-accent-blue);
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.theme-toggle-btn:hover {
+    background-color: var(--color-bg-light);
+    color: var(--color-accent-teal);
+}
+
+.mobile-theme-btn {
+    margin-top: 15px;
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* Control sun/moon display based on active class */
+.sun-icon {
+    display: none;
+}
+.moon-icon {
+    display: block;
+}
+
+:root.dark-theme .moon-icon {
+    display: none !important;
+}
+:root.dark-theme .sun-icon {
+    display: block !important;
 }

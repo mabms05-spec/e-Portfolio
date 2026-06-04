@@ -1,6 +1,29 @@
 // --- NAVIGATION & INTERACTION SCRIPTS ---
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Theme Toggle (Light / Dark Mode)
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const themeToggleMobileBtn = document.getElementById('themeToggleMobile');
+    const root = document.documentElement;
+
+    // Check for saved theme preference or default to system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        root.classList.add('dark-theme');
+    } else {
+        root.classList.remove('dark-theme');
+    }
+
+    function toggleTheme() {
+        const isDark = root.classList.toggle('dark-theme');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+    if (themeToggleMobileBtn) themeToggleMobileBtn.addEventListener('click', toggleTheme);
+
     // 1. Sticky Header scroll effect
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
